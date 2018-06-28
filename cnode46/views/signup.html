@@ -30,7 +30,7 @@
                 <label for="password">密码</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-success btn-block">注册</button>
+            <button id="signup-btn" type="submit" class="btn btn-success btn-block">注册</button>
         </form>
         <div class="message">
             <p>已有账号? <a href="/login">点击登录</a>.</p>
@@ -38,6 +38,29 @@
     </div>
     <script src="/node_modules/jquery/dist/jquery.js"></script>
     <script>
+        
+        $('#signup-btn').on('submit',function(e){
+            e.preventDefault();
+            var formdata = $('#signup_form').serialize();
+            console.log(formdata);
+            
+            $.ajax({
+                url:'/signup',
+                type:"POST",
+                data:formdata,
+                dataType:"json",
+                success:function(result){
+                    console.log(result);
+                    
+                },
+                error:function(err){
+                    if(err){
+                        throw err;
+                    }
+                }
+            })
+        })
+
     </script>
 </body>
 
