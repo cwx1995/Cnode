@@ -24,12 +24,12 @@ router
 .post('/signup',userCtrl.signup)
 .post('/signout',userCtrl.signout)
 //话题相关
-// router
-// .get('/topic/create',showCreate)
-// .post('/topic/create',create)
-// .get('/topic/:topicID',show)
-// .get('/topic/:topicID/edit',showEdit)
-// .post('/topic/:topicID/edit',edit)
-// .post('/topic/:topicID/delete',del)
+router
+.get('/topic/create',topicCtrl.showCreate)
+.post('/topic/create',topicCtrl.create)
+.get('/topic/:topicID',topicCtrl.showTopic)
+.get('/topic/:topicID/edit',topicCtrl.showEdit)
+.post('/topic/:topicID/edit',topicCtrl.edit)
+.get('/topic/:topicID/delete',topicCtrl.del)
 
 
