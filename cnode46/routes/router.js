@@ -1,3 +1,7 @@
+//router.js职责 设置路由规则
+//router路由对象
+//route 路由规则
+
 const express = require('express');
 //导入各种回调函数 代码分离
 const indexCtrl = require('../controllers/index');
@@ -20,12 +24,12 @@ router
 .post('/signup',userCtrl.signup)
 .post('/signout',userCtrl.signout)
 //话题相关
-router
-.get('/topic/create',showCreate)
-.post('/topic/create',create)
-.get('/topic/:topicID',show)
-.get('/topic/:topicID/edit',showEdit)
-.post('/topic/:topicID/edit',edit)
-.post('/topic/:topicID/delete',del)
+// router
+// .get('/topic/create',showCreate)
+// .post('/topic/create',create)
+// .get('/topic/:topicID',show)
+// .get('/topic/:topicID/edit',showEdit)
+// .post('/topic/:topicID/edit',edit)
+// .post('/topic/:topicID/delete',del)
 
 
