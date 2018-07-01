@@ -27,9 +27,14 @@ router
 router
 .get('/topic/create',topicCtrl.showCreate)
 .post('/topic/create',topicCtrl.create)
+//动态路由传参
 .get('/topic/:topicID',topicCtrl.showTopic)
+//url演示传参
+// .get('/topic/show',topicCtrl.showTopic)
 .get('/topic/:topicID/edit',topicCtrl.showEdit)
 .post('/topic/:topicID/edit',topicCtrl.edit)
 .get('/topic/:topicID/delete',topicCtrl.del)
+
+//动态传参要放在url传参后边 否则将不执行后边的代码
 
 

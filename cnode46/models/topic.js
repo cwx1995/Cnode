@@ -70,7 +70,9 @@ exports.update = (topic,callback)=>{
 //查询所有话题
 exports.getAll = (callback)=>{
     db.query(
-        'select topics.id, nickname, title, topics.createdAt from `topics` JOIN `users` ON userId = users.id',
+        //倒序查询 使后发布的排在前面
+        // order by topics.createAt desc
+        'select topics.id, nickname, title, topics.createdAt from `topics` JOIN `users` ON userId = users.id order by topics.createdAt desc',
         (err,results)=>{
             if(err){
                 return callback(err);
