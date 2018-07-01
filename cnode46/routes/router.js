@@ -6,7 +6,7 @@ const express = require('express');
 //导入各种回调函数 代码分离
 const indexCtrl = require('../controllers/index');
 const categoryCtrl = require('../controllers/category');
-const topicCtrl = require('../controllers//topic');
+const topicCtrl = require('../controllers/topic');
 const userCtrl = require('../controllers/user');
 //创建路由对象
 const router = express.Router();

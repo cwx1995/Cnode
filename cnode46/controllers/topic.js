@@ -80,35 +80,48 @@ exports.showTopic=(req,res)=>{
 
 };
 exports.showEdit=(req,res)=>{
-    res.render('topic/edit.html');
+    // res.render('topic/edit.html');
+     //获取所有版块（分类）
+    categoryModel.getAll((err,categories)=>{
+        //根据id查询话题
+        //.get('/topic/:topicID/edit',topicCtrl.showEdit)
+        const id = req.params.topicID;
+        if(isNaN(id)){
+            res.send('参数错误')
+        }
+        topicModel.getById(id,(err,topic)=>{
+            if(err){
+                return res.send('服务器内部错误')
+            }
+            if(topic){
+                res.render('topic/edit.html',{
+                    topic,
+                   categories,
+                   user:req.session.user
+                });
+            }else{
+                res.send('没有查询到数据');
+            }
+        });
+    });
 };
 //修改逻辑
 exports.edit=(req,res)=>{
-    //方式1 传统方式
-    //获取所有版块（分类）
-    // categoryModel.getAll((err,categories)=>{
-    //     //根据id查询话题
-    //     //.get('/topic/:topicID/edit',topicCtrl.showEdit)
-    //     const id = req.params.topicID;
-    //     if(isNaN(id)){
-    //         res.send('参数错误')
-    //     }
-    //     topicModel.getById(id,(err,topic)=>{
-    //         if(err){
-    //             return res.send('服务器内部错误')
-    //         }
-    //         if(topic){
-    //             res.render('topic/topic.html',{
-    //                 topic,
-    //                 user:req.params.user
-    //             });
-    //         }
-    //     });
-    // });
-//方式2
+
     //使用ajax方式 html内发送ajax请求
+    // .post('/topic/:topicID/edit',topicCtrl.edit)
+    //获取请求的数据
+    //获取url中的id
     const id = req.params.topicID;
+    //判断是否是数字
+    if(isNaN(id)){
+        res.send('参数错误')
+    }
+    //req.body
+    
     req.body.id = id;
+    //数据验证 
+    //修改
     topicModel.update(req.body,(err,isOK)=>{
         if(err){
             return res.json({
