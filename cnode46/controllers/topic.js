@@ -69,7 +69,8 @@ exports.showTopic=(req,res)=>{
        }
        if(topic){
            res.render('topic/show.html',{
-               topic
+               topic,
+               user:req.session.user
            })
        }else{
            res.send('查询的话题不存在')
@@ -130,8 +131,9 @@ exports.edit=(req,res)=>{
 };
 //s删除的逻辑
 exports.del=(req,res)=>{
-    //传统的请求响应式删除方式
+    //传统的请求响应式删除方式 没用ajax
     //1.获取url上传的数据
+    // .get('/topic/:topicID/delete',topicCtrl.del)
     //获取数据
     const id = req.params.topicID;
     //删除数据
@@ -140,8 +142,11 @@ if(err){
     return res.send('服务器内部错误')
 }
 if(isOK){
+    //重定向首页
     res.redirect('/');
 }else{
+    //传统的请求方式 不好
+    //错误的时候，也要重新渲染页面
     res.send('删除失败')
 }
     });
